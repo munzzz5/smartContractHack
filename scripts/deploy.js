@@ -100,25 +100,25 @@ const deployPPA = async (
 
 // Main deployment function
 const deployContracts = async (ppaRecipient) => {
-  // const nttContractId = await deployNonTransferableToken();
-  // console.log("nttContractId++++++", nttContractId);
-  // const nttContractObj = await ContractRequests({
-  //   initiator: User.findOne({
-  //     address: "0x484B40438Eae8b037481A9d6a969B2CEA8b76b3e",
-  //   }),
-  //   recipient: User.findOne({
-  //     address: "0x484B40438Eae8b037481A9d6a969B2CEA8b76b3e",
-  //   }),
-  //   role: "Auth",
-  //   minGuarantee: 10,
-  //   status: "Auth",
-  //   nttContractId: nttContractId,
-  // });
-  // nttContractObj.save();
-  // const contractDetail = await ContractRequests.findOne({
-  //   status: "deployed",
-  //   recipient: User.findOne({ address: ppaRecipient })._id,
-  // });
+  const nttContractId = await deployNonTransferableToken();
+  console.log("nttContractId++++++", nttContractId);
+  const nttContractObj = await ContractRequests({
+    initiator: User.findOne({
+      address: "0x484B40438Eae8b037481A9d6a969B2CEA8b76b3e",
+    }),
+    recipient: User.findOne({
+      address: "0x484B40438Eae8b037481A9d6a969B2CEA8b76b3e",
+    }),
+    role: "Auth",
+    minGuarantee: 10,
+    status: "Auth",
+    nttContractId: nttContractId,
+  });
+  nttContractObj.save();
+  const contractDetail = await ContractRequests.findOne({
+    status: "deployed",
+    recipient: User.findOne({ address: ppaRecipient })._id,
+  });
   const ppa = await deployPPA(
     "0x0000000000000000000000000000000000074443",
     // contractDetail.generatorAddress,
