@@ -1,0 +1,52 @@
+<h2>Pending Contract Requests</h2>
+<ul>
+    <% contractRequests.forEach(request => { %>
+        <li>
+            Request from <%= request.initiator %> | AS A <%= request.role %> | ENERGY INVOLVED <%= request.minGuarantee %>: 
+            <form action="/contractRequests/<%= request._id %>/accept" method="post">
+                <button type="submit">Accept</button>
+            </form>
+            <form action="/contractRequests/<%= request._id %>/reject" method="post">
+                <button type="submit">Reject</button>
+            </form>
+        </li>
+    <% }) %>
+
+    <% if (contractPending.length == 0) { %>
+        <li>No pending contract requests.</li>
+    <% } else { %>
+        <h2>Pending Contracts</h2>
+        <% contractPending.forEach(request => { %>
+            <li>
+                Request from <%= request.initiator %> | AS A <%= request.role %> | ENERGY INVOLVED <%= request.minGuarantee %>: 
+                <form action="/contractRequests/contractDetails" method="post">
+                    <!-- Contract Start Date -->
+                    <div>
+                        <label for="startDate">Contract Start Date:</label>
+                        <input type="date" name="startDate" required>
+                    </div>
+            
+                    <!-- Contract End Date -->
+                    <div>
+                        <label for="endDate">Contract End Date:</label>
+                        <input type="date" name="endDate" required>
+                    </div>
+            
+                    <!-- Penalty Agreement -->
+                    <div>
+                        <label for="penaltyPerUnit">Penalty per Unit Below Min Guarantee:</label>
+                        <input type="number" name="penaltyPerUnit" placeholder="Enter penalty per unit" required>
+                    </div>
+            
+                    <!-- Hidden input for billing frequency (assuming it's a monthly constant) -->
+                    <input type="hidden" name="billingFreq" value="MONTH">
+            
+                    <!-- Submit Button -->
+                    <div>
+                        <button type="submit">Submit Contract Details</button>
+                    </div>
+                </form>
+            </li>
+        <% }) %>
+    <% } %>
+</ul>

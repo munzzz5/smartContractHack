@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dashboard</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Contracts Deployed</h5>
+                        <p class="card-text"><%= totalContracts %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Energy Exchanged</h5>
+                        <p class="card-text"><%= totalEnergy %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <button class="btn btn-primary" onclick="newContract()">New Smart Contract</button>
+            <button class="btn btn-secondary" onclick="existingContract()">Existing Smart Contract</button>
+        </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/home.js"></script>
+</body>
+</html>

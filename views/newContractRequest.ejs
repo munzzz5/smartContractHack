@@ -1,0 +1,15 @@
+<form action="/contractRequests/new" method="post">
+    <label for="recipientWalletId">Recipient Wallet ID:</label>
+    <input type="text" name="recipientWalletId" required>
+    
+    <label for="role">Your Role:</label>
+    <select name="role">
+        <option value="generator">Generator</option>
+        <option value="consumer">Consumer</option>
+    </select>
+
+    <label for="minGuarantee">Minimum Guarantee:</label>
+    <input type="number" name="minGuarantee" required>
+
+    <button type="submit">Send Request</button>
+</form>
