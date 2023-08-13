@@ -9,7 +9,7 @@ const {
 } = require("@hashgraph/sdk");
 const fs = require("fs");
 const path = require("path");
-// Assuming you have the compiled contract outputs in the /build directory
+
 // console.log("__dirname", __dirname);
 const loadContractData = (contractName) => {
   const abiPath = path.resolve(__dirname, "..", "build", `${contractName}.abi`);
@@ -70,8 +70,12 @@ const deployPPA = async (nttContractId) => {
     .setBytecode(bytecode)
     .setGas(200000)
     .setConstructorParameters(
-      new ContractFunctionParameters().addString(nttContractId) // Assuming the PPA constructor takes the NTT contract ID as a parameter
-      // Add other constructor parameters as needed
+      new ContractFunctionParameters()
+        .addString(nttContractId)
+        .addAddress(generatorAddress)
+        .addAddress(consumerAddress)
+        .addUint256(minGenerationValue)
+        .addUint256(minConsumptionValue)
     );
 
   const contractResponse = await contractTx.execute(client);

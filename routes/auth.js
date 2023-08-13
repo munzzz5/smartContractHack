@@ -23,7 +23,7 @@ router.post("/login", async (req, res) => {
       user = new User({ address, username, location });
       await user.save();
     } else {
-      // Update the user's name and location if they already exist
+      // Update the user
       user.username = username;
       user.location = location;
       await user.save();
@@ -36,9 +36,6 @@ router.post("/login", async (req, res) => {
 });
 
 async function verifySignatureWithHedera(address, signature) {
-  // This is a placeholder. You'll need to implement the actual logic for verifying
-  // a signature with Hedera Hashgraph, which might involve interacting with the
-  // Arkhia REST API or another Hedera-specific method.
   try {
     const accountInfo = await getAccountById(address);
     // Use accountInfo and signature to verify the authenticity
@@ -55,10 +52,10 @@ async function getAccountById(accountId) {
   try {
     const accountUrl = `${restApiUrl}/accounts/${accountId}`;
     const response = await axios.get(accountUrl, body);
-    return response.data; // Typically, you'd want the data property from the axios response
+    return response.data;
   } catch (e) {
     console.error(e);
-    throw e; // Propagate the error so it can be caught in the calling function
+    throw e;
   }
 }
 

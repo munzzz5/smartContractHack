@@ -17,13 +17,13 @@ router.post("/new", async (req, res) => {
   }
   const recipientObjectId = recipientUser._id;
   const newRequest = new ContractRequest({
-    initiator: req.session.user._id, // Assuming you have user info in req.user
+    initiator: req.session.user._id,
     recipient: recipientObjectId, // This needs to be fetched based on walletId
     role,
     minGuarantee,
   });
   await newRequest.save();
-  res.redirect("/dashboard/dashboard"); // Or wherever you want to redirect after creating a request
+  res.redirect("/dashboard/dashboard");
 });
 router.post("/:id/accept", async (req, res) => {
   const contractRequest = await ContractRequest.findById(req.params.id);
@@ -64,7 +64,7 @@ router.post("/contractDetails", async (req, res) => {
   contractRequest.status = "deployed";
   await contractRequest.save();
 
-  res.redirect("/dashboard/dashboard"); // Or wherever you want to redirect after updating the contract details
+  res.redirect("/dashboard/dashboard");
 });
 
 module.exports = router;
