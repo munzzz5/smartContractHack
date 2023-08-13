@@ -10,7 +10,7 @@ router.get("/new", (req, res) => {
 router.post("/new", async (req, res) => {
   const { recipientWalletId, role, minGuarantee } = req.body;
   const User = require("../models/User");
-
+  console.log(recipientWalletId);
   const recipientUser = await User.findOne({ address: recipientWalletId });
   if (!recipientUser) {
     return res.status(404).send("Recipient not found");

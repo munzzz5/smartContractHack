@@ -365,7 +365,7 @@ contract NonTransferableToken is IERC20 {
     using SafeMath for uint256;
 
     mapping(address => uint256) private _balances;
-    uint256 private _totalSupply;
+    uint256 private _totalSupply = 10000;
     address owner;
 
     modifier onlyOwner() {
@@ -387,21 +387,21 @@ contract NonTransferableToken is IERC20 {
         return _balances[account];
     }
 
-    function transfer(address, uint256) external override returns (bool) {
+    function transfer(address, uint256) external pure override returns (bool) {
         revert("This token is non-transferable");
     }
 
     function allowance(
         address owner,
         address spender
-    ) external view override returns (uint256) {
+    ) external pure override returns (uint256) {
         return 0; // As the token is non-transferable, no allowances are provided.
     }
 
     function approve(
         address spender,
         uint256 amount
-    ) external override returns (bool) {
+    ) external pure override returns (bool) {
         revert("This token is non-transferable, approvals are not allowed");
     }
 
@@ -409,7 +409,7 @@ contract NonTransferableToken is IERC20 {
         address sender,
         address recipient,
         uint256 amount
-    ) external override returns (bool) {
+    ) external pure override returns (bool) {
         revert("This token is non-transferable");
     }
 

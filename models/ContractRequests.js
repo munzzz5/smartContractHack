@@ -13,7 +13,7 @@ const contractRequestSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["generator", "consumer"],
+    enum: ["generator", "consumer", "Auth"],
     required: true,
   },
   minGuarantee: {
@@ -22,7 +22,7 @@ const contractRequestSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["pending", "accepted", "rejected", "deployed"],
+    enum: ["pending", "accepted", "rejected", "deployed", "Auth"],
     default: "pending",
   },
   contractStartDate: { type: Date, required: false },
@@ -34,6 +34,7 @@ const contractRequestSchema = new mongoose.Schema({
   },
   approvalDate: { type: Date, required: false },
   approvalStatus: { type: String },
+  nttcontractId: { type: String },
 });
 
 module.exports = mongoose.model("ContractRequest", contractRequestSchema);

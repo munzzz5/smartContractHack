@@ -36,7 +36,7 @@ async function loginWithMetaMask() {
         }),
       }).then((response) => {
         if (response.ok) {
-          window.location.href = "/";
+          window.location.href = "/home";
         } else {
           alert("Login failed");
         }

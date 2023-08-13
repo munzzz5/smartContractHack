@@ -4,5 +4,5 @@ function newContract() {
 }
 
 function existingContract() {
-  window.location.href = "/dashboard/dashboard";
+  window.location.href = "/dashboard/existingContracts";
 }
